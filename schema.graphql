@@ -1,0 +1,43 @@
+type OwnershipTransferred @entity(immutable: true) {
+  id: Bytes!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TokenLockCreated @entity(immutable: true) {
+  id: Bytes!
+  tokenAddress: Bytes! # address
+  ownerAddress: Bytes! # address
+  tokenLock: Bytes! # address
+  amount: BigInt! # uint256
+  lockTime: BigInt! # uint256
+  releaseTime: BigInt! # uint256
+  title: String! # string
+  _vesting: Boolean! # bool
+  TGETime: BigInt! # uint256
+  TGEPercentage: BigInt! # uint256
+  Cycles: BigInt! # uint256
+  cycleRealsePercent: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type TotalValueLocked @entity(immutable: true) {
+  id: Bytes!
+  param0: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type updateToken @entity(immutable: true) {
+  id: Bytes!
+  newTokens: Bytes! # address
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

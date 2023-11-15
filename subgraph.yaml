@@ -1,0 +1,33 @@
+specVersion: 0.0.5
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: TokenLockFactory
+    network: mumbai
+    source:
+      address: "0x06443eEdb92F152166D642d6EB559525F26BA4D3"
+      abi: TokenLockFactory
+      startBlock: 42419888
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - OwnershipTransferred
+        - TokenLockCreated
+        - TotalValueLocked
+        - updateToken
+      abis:
+        - name: TokenLockFactory
+          file: ./abis/TokenLockFactory.json
+      eventHandlers:
+        - event: OwnershipTransferred(indexed address,indexed address)
+          handler: handleOwnershipTransferred
+        - event: TokenLockCreated(address,indexed address,address,uint256,uint256,uint256,string,bool,uint256,uint256,uint256,uint256)
+          handler: handleTokenLockCreated
+        - event: TotalValueLocked(uint256)
+          handler: handleTotalValueLocked
+        - event: updateToken(address)
+          handler: handleupdateToken
+      file: ./src/token-lock-factory.ts
